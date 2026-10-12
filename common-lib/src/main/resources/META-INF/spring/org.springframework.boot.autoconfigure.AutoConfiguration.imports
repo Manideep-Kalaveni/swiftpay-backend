@@ -1,0 +1,6 @@
+com.manideep.swiftpay.common_lib.audit.SharedAuditAutoConfig
+com.manideep.swiftpay.common_lib.config.SharedKafkaAutoConfig
+com.manideep.swiftpay.common_lib.exception.SharedExceptionAutoConfig
+com.manideep.swiftpay.common_lib.idempotency.SharedResilienceAutoConfig
+com.manideep.swiftpay.common_lib.util.SharedUtilAutoConfig
+com.manideep.swiftpay.common_lib.web.SharedWebFilterAutoConfig

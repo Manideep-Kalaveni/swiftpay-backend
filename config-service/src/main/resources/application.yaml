@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: config-service
+
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Manideep-Kalaveni/distributed-payment-gateway-config
+          username: Manideep-Kalaveni
+          password: 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
+          default-label: main
+
+server:
+  port: 8888
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  health:
+    config:
+      enabled: false
+  tracing:
+    sampling:
+      probability: 1.0
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: k8s
+
+  cloud:
+    discovery:
+      enabled: false
+
+    config:
+      server:
+        git:
+          uri: ${GIT_CONFIG_REPO}
+          username: ${GIT_USERNAME}
+          password: ${GIT_PASSWORD}
+
+eureka:
+  client:
+    enabled: false
+    registry-with-eureka: false
+    fetch-registry: false
+
+management:
+  zipkin:
+    tracing:
+      endpoint: http://zipkin.swiftpay.core.svc.cluster.local:9411/api/v2/spans
